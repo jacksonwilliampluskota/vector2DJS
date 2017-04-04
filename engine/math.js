@@ -1,7 +1,7 @@
 'use strict';
 function vec2D(x, y) {
-	this.x = x;
-	this.y = y;
+	this.x = x || 0;
+	this.y = y || 0;
 }
 
 vec2D.prototype = {
@@ -16,20 +16,19 @@ vec2D.prototype = {
 
 	normalize: function() {
 		let magnetude = this.magnitude();
-		let obj = {
-			x: 0,
-			y:0,
-		};
 
-		obj.x = this.x / magnetude;
-		obj.y = this.y / magnetude;
-		return obj;
+		return this.div(magnetude);
 	},
 
 	add: function(otherVector2) {
 
-		this.x = this.x + otherVector2.x;
-		this.y = this.y + otherVector2.y;
+		if (otherVector2 instanceof vec2D) {
+			this.x = this.x + otherVector2.x;
+			this.y = this.y + otherVector2.y;
+		} else {
+			this.x = this.x + otherVector2;
+			this.y = this.y + otherVector2;
+		}
 
 		return this;
 
@@ -37,8 +36,13 @@ vec2D.prototype = {
 
 	subtract: function(otherVector2) {
 
-		this.x = this.x - otherVector2.x;
-		this.y = this.y - otherVector2.y;
+		if (otherVector2 instanceof vec2D) {
+			this.x = this.x - otherVector2.x;
+			this.y = this.y - otherVector2.y;
+		} else {
+			this.x = this.x - otherVector2;
+			this.y = this.y - otherVector2;
+		}
 
 		return this;
 
@@ -46,8 +50,13 @@ vec2D.prototype = {
 
 	mult: function(otherVector2) {
 
-		this.x = this.x * otherVector2.x;
-		this.y = this.y * otherVector2.y;
+		if (otherVector2 instanceof vec2D) {
+			this.x = this.x * otherVector2.x;
+			this.y = this.y * otherVector2.y;
+		} else {
+			this.x = this.x * otherVector2;
+			this.y = this.y * otherVector2;
+		}
 
 		return this;
 
@@ -55,8 +64,13 @@ vec2D.prototype = {
 
 	div: function(otherVector2) {
 
-		this.x = this.x / otherVector2.x;
-		this.y = this.y / otherVector2.y;
+		if (otherVector2 instanceof vec2D) {
+			this.x = this.x / otherVector2.x;
+			this.y = this.y / otherVector2.y;
+		} else {
+			this.x = this.x / otherVector2;
+			this.y = this.y / otherVector2;
+		}
 
 		return this;
 

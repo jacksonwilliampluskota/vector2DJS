@@ -9,13 +9,17 @@
     var bgImage;
     var papaiNoelReady = false;
     var papaiNoelImage;
-    var noel = {
+    var noel = new vec2D(100, 180);
+    var noelVelocyti = new vec2D(3, 3);
+    var gravity = new vec2D(1.5, 1.5);
+    var noelPowerJump = new vec2D(15, 15);
+    /*var noel = {
         x: 100,
         y: 180,
         velocyti: 3,
         gravity: 1.5,
         powerJump: 15,
-    };
+    };*/
     var spritesNoelWidth = 45;
     var spritesNoelHeight = 200;
     var row = 3;
@@ -41,7 +45,13 @@
     var frameCount = 3;
 
     var etapa = 0;
-    var irAteEtapa0 = {
+    var irAteEtapa0 = new vec2D(400, 20);
+    var irAteEtapa1 = new vec2D(690, 200);
+    var irAteEtapa2 = new vec2D(750, 140);
+    var irAteEtapa3 = new vec2D(820, 200);
+    var irAteEtapa4 = new vec2D(25, 225);
+    var irAteEtapa5 = new vec2D(100, 180);
+    /*var irAteEtapa0 = {
         x: 400,
         y: 20,
     };
@@ -69,8 +79,8 @@
     var irAteEtapa5 = {
         x: 100,
         y: 180,
-    };
-    var vetor;
+    };*/
+    //var vetor;
     var magnitude;
     var normalize;
 
@@ -100,87 +110,33 @@
         papaiNoelImage.src = 'img/sprite_noel.png';
 
         if (etapa == 0) {
-            vetor = {
-                x: irAteEtapa0.x - noel.x,
-                y: irAteEtapa0.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa0.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         if (etapa == 1) {
-            vetor = {
-                x: irAteEtapa1.x - noel.x,
-                y: irAteEtapa1.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa1.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         if (etapa == 2) {
-            vetor = {
-                x: irAteEtapa2.x - noel.x,
-                y: irAteEtapa2.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa2.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         if (etapa == 3) {
-            vetor = {
-                x: irAteEtapa3.x - noel.x,
-                y: irAteEtapa3.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa3.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         if (etapa == 4) {
-            vetor = {
-                x: irAteEtapa4.x - noel.x,
-                y: irAteEtapa4.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa4.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         if (etapa == 5) {
-            vetor = {
-                x: irAteEtapa5.x - noel.x,
-                y: irAteEtapa5.y - noel.y,
-            };
-
-            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
-
-            normalize = {
-                x: vetor.x / magnitude,
-                y: vetor.y / magnitude,
-            };
+            vetor = irAteEtapa5.subtract(noel);
+            normalize = vetor.normalize();
         }
 
         //snowflake particles
@@ -247,8 +203,8 @@
 
             if (etapa == 0) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y += normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y += normalize.y * noelVelocyti.y;
                 if (noel.x >= 400) {
                     etapa = 1;
                 }
@@ -256,8 +212,8 @@
 
             if (etapa == 1) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y -= normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y -= normalize.y * noelVelocyti.y;
                 if (noel.x >= 690) {
                     etapa = 2;
                 }
@@ -265,8 +221,8 @@
 
             if (etapa == 2) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y += normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y += normalize.y * noelVelocyti.y;
                 if (noel.x >= 750) {
                     etapa = 3;
                 }
@@ -274,14 +230,14 @@
 
             if (etapa == 3) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y -= normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y -= normalize.y * noelVelocyti.y;
             }
 
             if (etapa == 4) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y -= normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y -= normalize.y * noelVelocyti.y;
                 if (noel.x >= 50) {
                     etapa = 5;
                 }
@@ -289,8 +245,8 @@
 
             if (etapa == 5) {
 
-                noel.x += normalize.x * noel.velocyti;
-                noel.y += normalize.y * noel.velocyti;
+                noel.x += normalize.x * noelVelocyti.x;
+                noel.y += normalize.y * noelVelocyti.y;
                 if (noel.x >= 100) {
                     etapa = 0;
                 }
