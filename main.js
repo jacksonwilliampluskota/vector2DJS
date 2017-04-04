@@ -2,20 +2,24 @@
 	'use strict';
 
 
-	var vec = new vec2D(100, 100);
-	console.log('priMagnetude', vec.magnitude());
-	console.log('normalize', vec.normalize());
-	console.log('normalizeSqrt', vec.normalizeSquare());
-	console.log('ultMagnitude', vec.magnitude());
+	var bola = new vec2D(100, 100);
+	var velocidade = new vec2D(1, 3.3);
+	console.log('valores', bola.x, bola.y);
+	console.log('priMagnetude', bola.magnitude());
+	console.log('normalize', bola.normalize());
+	console.log('ultMagnitude', bola.magnitude());
+	console.log('valores', bola.x, bola.y);
+	console.log('toRadians', bola.toRadians(90));
+	console.log('toDegrees', bola.toDegrees(Math.PI/2));
 	var HEIGHT;
 	var WIDTH;
 	var ctx;
-	var bola = {
+	/*var bola = {
 		x: 100,
 		y: 100,
 		xspeed:1,
 		yspeed:3.3,
-	};
+	};*/
 
 	function main() {
 		HEIGHT = window.innerHeight;
@@ -39,15 +43,14 @@
 	}
 	function update() {
 
-		bola.x = bola.x + bola.xspeed;
-  		bola.y = bola.y + bola.yspeed;
+		bola = bola.add(velocidade);
 
 		if ((bola.x > (WIDTH / 2)) || (bola.x < 0)) {
-    		bola.xspeed = bola.xspeed * -1;
+    		velocidade.x = velocidade.x * -1;
   		}
 
   		if ((bola.y > (HEIGHT/2)) || (bola.y < 0)) {
-    		bola.yspeed = bola.yspeed * -1;
+    		velocidade.y = velocidade.y * -1;
   		}
 	}
 	function draw() {
