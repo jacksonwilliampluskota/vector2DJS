@@ -80,7 +80,7 @@
         x: 100,
         y: 180,
     };*/
-    //var vetor;
+    var vetor;
     var magnitude;
     var normalize;
 
