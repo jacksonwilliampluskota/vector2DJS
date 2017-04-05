@@ -110,31 +110,97 @@
         papaiNoelImage.src = 'img/sprite_noel.png';
 
         if (etapa == 0) {
+            /*vetor = {
+                x: irAteEtapa0.x - noel.x,
+                y: irAteEtapa0.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa0.subtract(noel);
             normalize = vetor.normalize();
         }
 
         if (etapa == 1) {
+            /*vetor = {
+                x: irAteEtapa1.x - noel.x,
+                y: irAteEtapa1.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa1.subtract(noel);
             normalize = vetor.normalize();
         }
 
         if (etapa == 2) {
+            /*vetor = {
+                x: irAteEtapa2.x - noel.x,
+                y: irAteEtapa2.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa2.subtract(noel);
             normalize = vetor.normalize();
         }
 
         if (etapa == 3) {
+            /*vetor = {
+                x: irAteEtapa3.x - noel.x,
+                y: irAteEtapa3.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa3.subtract(noel);
             normalize = vetor.normalize();
         }
 
         if (etapa == 4) {
+            /*vetor = {
+                x: irAteEtapa4.x - noel.x,
+                y: irAteEtapa4.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa4.subtract(noel);
             normalize = vetor.normalize();
         }
 
         if (etapa == 5) {
+            /*vetor = {
+                x: irAteEtapa5.x - noel.x,
+                y: irAteEtapa5.y - noel.y,
+            };
+
+            magnitude = Math.sqrt((vetor.x * vetor.x) + (vetor.y * vetor.y));
+
+            normalize = {
+                x: vetor.x / magnitude,
+                y: vetor.y / magnitude,
+            };*/
             vetor = irAteEtapa5.subtract(noel);
             normalize = vetor.normalize();
         }
