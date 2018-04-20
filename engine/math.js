@@ -76,17 +76,35 @@ vec2D.prototype = {
 
 	},
 
+	rotate: function (angle) {
+
+		angle = this.toRadians(angle);
+		var sen = Math.sin(angle);
+		var coss = Math.cos(angle);
+
+		var newX = this.x * coss - this.y * sen;
+		var newY = this.x * sen - this.y * coss;
+
+		this.x = newX;
+		this.y = newY;
+
+		return this;
+	},
+
 	toRadians: function(angleInDegrees) {
-            return angleInDegrees * Math.PI / 180.0;// Math.PI / 180.0 radiano = 1 grau
-    },
+		return angleInDegrees * Math.PI / 180.0;// Math.PI / 180.0 radiano = 1 grau
+	},
 
-    toDegrees: function(angleInRadians) {
-            return angleInRadians * 180.0 / Math.PI;//180.0 / Math.PI graus = 1 radiano
-    },
+	toDegrees: function(angleInRadians) {
+		return angleInRadians * 180.0 / Math.PI;//180.0 / Math.PI graus = 1 radiano
+	},
 
-    set: function(x, y) {
+  set: function(x, y) {
 		this.x = x;
 		this.y = y;
+		return this;
+	},
+	get: function() {
 		return this;
 	}
 };
