@@ -2,17 +2,22 @@
   'use strict';
 
   var earth = {};
-  earth.position = new vec2D(100, 100);
+  earth.position = { x: 50, y:50};
 
   var moon = {};
-  moon.position = new vec2D(170, 170);
+  moon.position = {x:0, y:10};
 
-	var velocidade = new vec2D(1, 3.3);
+	var velocidade = new vec2D(1, 1);
 
 
 	var HEIGHT;
 	var WIDTH;
-	var ctx;
+  var ctx;
+  var fps = 1000/30;
+  var then = Date.now();
+  var now;
+  var delta;
+  var angle = 30 * Math.PI / 180.0;
 
 	function main() {
 		HEIGHT = window.innerHeight;
@@ -44,11 +49,29 @@
   }
 
 	function update() {
+    now = Date.now();
+    delta = now - then;
+    if (delta > fps) {
+      var sen = Math.sin(angle);
+      var coss = Math.cos(angle);
+
+      var vetor = { x: earth.position.x - moon.position.x, y: earth.position.y - moon.position.y };
+
+      var newX = (vetor.x + moon.position.x) * coss + (vetor.y + moon.position.y) * sen;
+      var newY = (vetor.x + moon.position.x) * sen - (vetor.y + moon.position.y) * coss;
+
+      moon.position.x = newX + earth.position.x;
+      moon.position.y = newY + earth.position.y;
+
+      angle += 0.05;
+
+      then = now - delta % fps;
+    }
   }
 
 	function draw() {
-    ctx.drawImage(earth.image, earth.position.x, earth.position.y, 70, 70);
-    ctx.drawImage(moon.image, moon.position.x, moon.position.y, 40, 40);
+    ctx.drawImage(earth.image, earth.position.x, earth.position.y, 60, 60);
+    ctx.drawImage(moon.image, moon.position.x, moon.position.y, 30, 30);
 	}
 
 	main();
