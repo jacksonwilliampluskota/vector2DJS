@@ -83,12 +83,20 @@ vec2D.prototype = {
 		var coss = Math.cos(angle);
 
 		var newX = this.x * coss - this.y * sen;
-		var newY = this.x * sen - this.y * coss;
+		var newY = this.x * sen + this.y * coss;
 
 		this.x = newX;
 		this.y = newY;
 
 		return this;
+	},
+
+	angle:function (otherVector2) {
+		if (otherVector2 instanceof vec2D) {
+			return Math.atan2(otherVector2.y, otherVector2.x);
+		} else {
+			return Math.atan2(otherVector2, otherVector2);
+		}
 	},
 
 	toRadians: function(angleInDegrees) {

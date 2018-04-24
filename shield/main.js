@@ -2,13 +2,12 @@
   'use strict';
 
   var earth = {};
-  earth.position = { x: 50, y:50};
+  earth.position = new vec2D(150, 150);
 
   var moon = {};
-  moon.position = {x:0, y:10};
+  moon.position = new vec2D(200, 200);
 
-	var velocidade = new vec2D(1, 1);
-
+  var distanciaLuaTerraRaio = new vec2D(moon.position.x - earth.position.x, moon.position.y - earth.position.y);
 
 	var HEIGHT;
 	var WIDTH;
@@ -17,7 +16,7 @@
   var then = Date.now();
   var now;
   var delta;
-  var angle = 30 * Math.PI / 180.0;
+  var angle = 0 * Math.PI / 180.0;
 
 	function main() {
 		HEIGHT = window.innerHeight;
@@ -52,18 +51,13 @@
     now = Date.now();
     delta = now - then;
     if (delta > fps) {
-      var sen = Math.sin(angle);
-      var coss = Math.cos(angle);
 
-      var vetor = { x: earth.position.x - moon.position.x, y: earth.position.y - moon.position.y };
+      var newPosition = new vec2D(distanciaLuaTerraRaio.x, distanciaLuaTerraRaio.y);
+      newPosition.rotate(angle);
 
-      var newX = (vetor.x + moon.position.x) * coss + (vetor.y + moon.position.y) * sen;
-      var newY = (vetor.x + moon.position.x) * sen - (vetor.y + moon.position.y) * coss;
+      moon.position = newPosition.add(earth.position);
 
-      moon.position.x = newX + earth.position.x;
-      moon.position.y = newY + earth.position.y;
-
-      angle += 0.05;
+      angle += 1;
 
       then = now - delta % fps;
     }
